@@ -19,6 +19,7 @@ void DebugMode()
             const auto player = entityList->GetEntityFromIndex(i);
             if (player)
                 std::cout << "ID: " << i << " Health: " << player->GetHealth() << std::endl;
+
         }
 }
 
