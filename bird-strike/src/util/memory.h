@@ -23,12 +23,12 @@ namespace Memory
 	template<typename T, typename ... T_args> constexpr T CallVirtual(void* vtable, const std::uint32_t index, T_args ... args) noexcept
 	{
 		using prototype = T(__thiscall*)(void*, decltype(args)...);
-		return Read<prototype*, void*>(vtable)[index](vtable, args);
+		return (Read<prototype*, void*>(vtable))[index](vtable, args...);
 	}
 
-	
+	inline std::uintptr_t ToAbsolute(std::uintptr_t relAddr) noexcept {
+		return static_cast<std::uintptr_t>(relAddr + 4 + *reinterpret_cast<std::int32_t*>(relAddr));
+	}
 
-	void Initialize() noexcept;
-	//func signatures
-
+	inline std::uint8_t* keyValuesFromString = nullptr;
 }

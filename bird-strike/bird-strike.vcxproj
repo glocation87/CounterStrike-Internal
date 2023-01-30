@@ -89,6 +89,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;BIRDSTRIKE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>util/pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -105,6 +106,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;BIRDSTRIKE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>util/pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -149,11 +151,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\core\interfaces.h" />
     <ClInclude Include="src\util\includes.h" />
     <ClInclude Include="src\misc\pch.h" />
     <ClInclude Include="src\util\memory.h" />
+    <ClInclude Include="src\valve\cclientclass.h" />
+    <ClInclude Include="src\valve\ccolor.h" />
+    <ClInclude Include="src\valve\centity.h" />
+    <ClInclude Include="src\valve\ckeyvalues.h" />
+    <ClInclude Include="src\valve\cmatrix.h" />
+    <ClInclude Include="src\valve\crecvtable.h" />
+    <ClInclude Include="src\valve\cusercmd.h" />
+    <ClInclude Include="src\valve\cutlvector.h" />
+    <ClInclude Include="src\valve\cvector.h" />
+    <ClInclude Include="src\valve\ibaseclient.h" />
+    <ClInclude Include="src\valve\icliententitylist.h" />
+    <ClInclude Include="src\valve\iclientmode.h" />
+    <ClInclude Include="src\valve\idebugoverlay.h" />
+    <ClInclude Include="src\valve\iengineclient.h" />
+    <ClInclude Include="src\valve\iglobalvars.h" />
+    <ClInclude Include="src\valve\headers.h" />
+    <ClInclude Include="src\valve\iglowmanager.h" />
+    <ClInclude Include="src\valve\imodelinfo.h" />
+    <ClInclude Include="src\valve\ispatialquery.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\interfaces.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\util\memory.cpp" />
   </ItemGroup>

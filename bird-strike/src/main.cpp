@@ -1,4 +1,5 @@
 #include "util/includes.h"
+#include "core/interfaces.h"
 
 void DebugMode()
 {
@@ -8,19 +9,36 @@ void DebugMode()
 
     SetConsoleTitle(L"bird-strike | w00d7");
     std::cout << "Debug Mode Enabled" << std::endl;
+
+    const auto entityList = Interface::entityList;
+    std::cout << entityList << std::endl;
+
+    if (entityList)
+        for (auto i = 0; i < 64; i++)
+        {
+            const auto player = entityList->GetEntityFromIndex(i);
+            if (player)
+                std::cout << "ID: " << i << " Health: " << player->GetHealth() << std::endl;
+        }
 }
 
 DWORD WINAPI Entry(void* param)
 {
+    Interface::Initialize();
+
 #if _DEBUG
     DebugMode();
 #endif
+   
+    /*while (!GetAsyncKeyState(VK_END))
+    {
+        //call cheat-api code here
 
-
-    while (!GetAsyncKeyState(VK_END))
         Sleep(200);
+    }*/
+        
 
-    return 1;
+    return 0;
 }
 
 void InitializeThread(HMODULE* hModule)
