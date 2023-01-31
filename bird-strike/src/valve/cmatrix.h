@@ -21,5 +21,10 @@ public:
 class CMatrix4x4
 {
 public:
+	inline float GetElement(int row, int column) noexcept
+	{
+		return data[row][column];
+	}
+
 	float data[4][4];
 };

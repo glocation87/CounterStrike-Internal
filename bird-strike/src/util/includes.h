@@ -6,3 +6,5 @@
 
 //local libraries
 #include "memory.h"
+#include "../core/hooks.h"
+#include "globals.h"

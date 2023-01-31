@@ -17,3 +17,5 @@
 #include "iglobalvars.h"
 #include "iglowmanager.h"
 #include "imodelinfo.h"
+#include "isurface.h"
+#include "ivpanel.h"

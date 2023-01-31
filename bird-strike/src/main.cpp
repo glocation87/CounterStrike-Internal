@@ -12,32 +12,13 @@ void DebugMode()
 
     const auto entityList = Interface::entityList;
     std::cout << entityList << std::endl;
-
-    if (entityList)
-        for (auto i = 0; i < 64; i++)
-        {
-            const auto player = entityList->GetEntityFromIndex(i);
-            if (player)
-                std::cout << "ID: " << i << " Health: " << player->GetHealth() << std::endl;
-
-        }
 }
 
 DWORD WINAPI Entry(void* param)
 {
     Interface::Initialize();
-
-#if _DEBUG
-    DebugMode();
-#endif
-   
-    /*while (!GetAsyncKeyState(VK_END))
-    {
-        //call cheat-api code here
-
-        Sleep(200);
-    }*/
-        
+    Memory::Initialize();
+    Hooks::Initialize();
 
     return 0;
 }
@@ -56,6 +37,23 @@ void InitializeThread(HMODULE* hModule)
     
     if (injectionThread)
         CloseHandle(injectionThread);
+
+#if _DEBUG
+    DebugMode();
+#endif
+
+    while (!GetAsyncKeyState(VK_END))
+    {
+        //call cheat-api code here
+
+        Sleep(200);
+    }
+#if _DEBUG
+    FreeConsole();
+#endif
+    
+    FreeLibraryAndExitThread(*hModule, NULL);
+    exit(0);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,

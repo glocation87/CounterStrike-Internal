@@ -8,6 +8,9 @@
 
 namespace Memory
 {
+	void Initialize() noexcept;
+	std::uint8_t* PatternScan(const char* moduleName, const char* pattern) noexcept;
+
 	template<typename T, typename R> inline T Read(R address) noexcept {
 		return *(reinterpret_cast<T*>(address));
 	}
@@ -29,6 +32,17 @@ namespace Memory
 	inline std::uintptr_t ToAbsolute(std::uintptr_t relAddr) noexcept {
 		return static_cast<std::uintptr_t>(relAddr + 4 + *reinterpret_cast<std::int32_t*>(relAddr));
 	}
+
+	// get void pointer to virtual function @ given index
+	constexpr void* Get(void* vmt, const std::uint32_t index) noexcept
+	{
+		return (*static_cast<void***>(vmt))[index];
+	}
+
+	// return addresses
+	inline std::uint8_t* allocKeyValuesClient = nullptr;
+	inline std::uint8_t* allocKeyValuesEngine = nullptr;
+	inline std::uint8_t* insertIntoTree = nullptr;
 
 	inline std::uint8_t* keyValuesFromString = nullptr;
 }

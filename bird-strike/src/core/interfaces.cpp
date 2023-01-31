@@ -12,6 +12,8 @@ void Interface::Initialize() noexcept
 	debugOverlay = Get<IVDebugOverlay>(L"engine.dll", "VDebugOverlay004");
 	engine = Get<IVEngineClient>(L"engine.dll", "VEngineClient014");
 	modelInfo = Get<IVModelInfo>(L"engine.dll", "VModelInfoClient004");
+	panel = Get<IVPanel>(L"vgui2.dll", "VGUI_Panel009");
+	isurface = Get<ISurface>(L"vguimatsurface.dll", "VGUI_Surface031");
 
 	// get the exported KeyValuesSystem function
 	if (const HINSTANCE handle = GetModuleHandle(L"vstdlib.dll"))
@@ -20,7 +22,7 @@ void Interface::Initialize() noexcept
 }
 
 template <typename T>
-T* Interface::Get(LPCWSTR module, const char* interface) noexcept
+T* Interface::Get(LPCWSTR module, const char* _interface) noexcept
 {
 	HMODULE handle = GetModuleHandle(module);
 
@@ -32,5 +34,5 @@ T* Interface::Get(LPCWSTR module, const char* interface) noexcept
 
 	using interfacePrototype = T*(__cdecl*)(const char*, int*);
 	interfacePrototype createInterface = reinterpret_cast<interfacePrototype>(GetProcAddress(handle, "CreateInterface"));
-	return createInterface(interface, nullptr);
+	return createInterface(_interface, nullptr);
 }

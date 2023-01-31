@@ -7,7 +7,7 @@ namespace Interface
 
 	// Returns the interface
 	template <typename T>
-	T* Get(LPCWSTR module, const char* interface) noexcept;
+	T* Get(LPCWSTR module, const char* _interface) noexcept;
 
 	inline IBaseClientDLL* client = nullptr;
 	inline IGlowManager* glowManager = nullptr;
@@ -17,7 +17,8 @@ namespace Interface
 	inline IVModelInfo* modelInfo = nullptr;
 	inline IVDebugOverlay* debugOverlay = nullptr;
 	inline IVEngineClient* engine = nullptr;
-	
+	inline IVPanel* panel = nullptr;
+	inline ISurface* isurface = nullptr;
 
 	// other
 	inline void* keyValuesSystem = nullptr;
